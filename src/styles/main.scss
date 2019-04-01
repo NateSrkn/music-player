@@ -1,0 +1,220 @@
+@import './tailwind.css';
+@import './settings';
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	font-family: 'Montserrat';
+	background-color: $black;
+}
+
+.App {
+	-webkit-overflow-scrolling: touch;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.artist-list {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 200px);
+	grid-gap: 50px;
+}
+
+.artist {
+	height: 200px;
+	width: 200px;
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+
+	.artist-image {
+		width: 200px;
+	}
+}
+
+.album {
+	padding: 3vw 0;
+
+	&:last-child {
+		margin-bottom: 40vh;
+	}
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	clear: both;
+
+	tr {
+		border-top: 1px solid lightslategrey;
+
+		&:focus {
+			outline: none;
+		}
+		&:first-child {
+			border-top: 0;
+		}
+		&:last-child {
+			border-bottom: 1px solid lightslategrey;
+		}
+		th {
+			text-align: left;
+			font-weight: lighter;
+		}
+
+		td {
+			padding: 0.75rem;
+
+			&.song-length {
+				text-align: right;
+			}
+		}
+
+		&:not(:first-child) {
+			cursor: pointer;
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
+}
+
+.page-control {
+	margin-right: 5px;
+	height: 2.5rem;
+	width: 2.5rem;
+	background-color: white;
+	border-radius: 50%;
+
+	&:focus {
+		outline: none;
+	}
+
+	.arrow {
+		border: solid black;
+		border-width: 0 2px 2px 0;
+		display: inline-block;
+		padding: 5px;
+
+		&.forwards {
+			transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg);
+		}
+
+		&.backwards {
+			transform: rotate(135deg);
+			-webkit-transform: rotate(135deg);
+		}
+	}
+
+	&:hover {
+		background-color: darken(white, 10%);
+	}
+}
+
+.song-length-head {
+	position: relative;
+	display: flex;
+
+	svg {
+		padding: 0 2px;
+		margin: 0 15px;
+		fill: white;
+		margin-left: auto;
+	}
+}
+
+.playbar {
+	z-index: 0;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	background-color: $black;
+	border-top: 1px solid lightslategray;
+}
+.controls {
+	display: flex;
+
+	button {
+		outline: none;
+		background: none;
+		border: none;
+		margin: 0 10px;
+
+		&:focus {
+			outline: none;
+			background: none;
+			border: none;
+		}
+
+		&.button {
+			height: 20px;
+			box-sizing: border-box;
+			border-color: transparent transparent transparent white;
+			transition: 100ms all ease;
+			will-change: border-width;
+			cursor: pointer;
+
+			&.play {
+				border-style: solid;
+				border-width: 10px 0 10px 20px;
+			}
+
+			&.pause {
+				border-style: double;
+				border-width: 0 0 0 20px;
+			}
+
+			&.next-track {
+				position: relative;
+				border-style: solid;
+				border-width: 10px 0 10px 20px;
+
+				&:after {
+					background-color: white;
+					position: absolute;
+					content: '';
+					height: 19px;
+					width: 5px;
+					left: -3px;
+					top: -9px;
+				}
+			}
+
+			&.prev-track {
+				position: relative;
+				border-style: solid;
+				border-width: 10px 0 10px 20px;
+				transform: rotate(180deg);
+
+				&:after {
+					background-color: white;
+					position: absolute;
+					content: '';
+					height: 19px;
+					width: 5px;
+					left: -3px;
+					top: -9px;
+				}
+			}
+		}
+	}
+}
+
+.track-control {
+	display: flex;
+	div {
+		padding: 0 10px;
+	}
+}
